@@ -1,9 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Back Office</title>
-<link href="styles.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="favicon.ico">
+<link href="styles.css" rel="stylesheet" type="text/css" media="print"/>
 <link rel="stylesheet" href="css/styles.css">
 <link rel="stylesheet" href="css/style-forms.css">
 <script type="text/javascript" src="js/angular-1.2.0-rc.2/angular.js"></script>
@@ -13,58 +15,98 @@
 </script>
 <style type="text/css">
 
-@media screen and (max-width: 600px){
-    ul.sidenav {
-        width:100%;
-        height:auto;
-        position:relative;
-    }
-    ul.sidenav li a {
-        float: left;
-        padding: 15px;
-    }
-    div.content {margin-left:0;}
+body {
+    background-color: #e8e8e8;
+    color: rgba(0,0,0,.87);
+    direction: ltr;
+    font-family: 'Roboto','Droid Sans',arial,sans-serif;
+    font-size: 15px;
+    margin: 0;
+    min-width: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0;
 }
 
-@media screen and (max-width: 400px){
-    ul.sidenav li a {
-        text-align: center;
-        float: none;
-    }
+@media (min-width: 575px) {
+  #contentBox {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
+@media (max-width: 575px) {
+  #contentBox {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
 #contentGrid00 {
-clear:both;
-width: 30%;
-background-color: silver;
-margin-left: 200px;
+text-align: center;
+background-color: white;
 }
 
+#contentBox {
+display: inline-block;
+background-color: silver;
+}
+
+
 #mainHead{
-margin-left: 10%;
-margin-right: 10%;
-width: 80%;
+    background-color: #fb0;
+    padding: 0px;
+	display: table;
+	box-sizing: border-box;
+    position: fixed;
+    width: 100%;
+    font: 13px/27px Arial,sans-serif;
+    direction: ltr;
+    height: 50px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 10px; 
+}
+
+#headWrapper{
+	height: 50px; 
+}
+
+button.menu {
+    background-color: transparent;
+    border-style: none;
+    height: 50px;
+    width: 34px;
+}
+button img {
+    height: 24px;
+    width: 24px;
+}
+
+button.menu:ACTIVE{
+	
+	background-color: rgba(255, 255, 255, 0.2)
 }
 
 #logo{
-background-color: olive;
-width: 10%;
-height: 100px;
-float: left;
 }
 
 #menu{
-width: 70%
+	position: absolute;
+	background-color: #fb0;
 }
 
 #menu ul{
-    margin: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 0px;
+    margin-top: 0px;
     padding: 0;
 }
 
 #menu ul li{
-display: inline-block;
+ display: block;
+
 }
 
 #menu ul li:hover {
@@ -95,6 +137,9 @@ overflow: visible;
 <div id="mainHead">
 
 	<div id="logo">
+		<button class="menu">
+			<img alt="Menu" src="images/hamburger.svg">
+		</button>
 	</div>
 
 	<div id="menu">
@@ -140,8 +185,10 @@ overflow: visible;
 	</div>
 
 </div>
+<div id="headWrapper"></div>
 
 <div id="contentGrid00">
+	<div id="contentBox">
 	 			<select name="selItens" ng-model="filterPaging" 
 					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
 			  </select>
@@ -154,7 +201,215 @@ overflow: visible;
 			 <br>Idade: <span ng-bind="convidado.age"></span>
 			 <br>Pais: <span ng-bind="convidado.country"></span>
 			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
-
+	</div>
+	<div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div>
+	<div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div>
+	<div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div>
+	<div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div><div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div>
+	<div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div>
+	<div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div>
+	<div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div>
+	<div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div><div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div>
+	<div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div>
+	<div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div>
+	<div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div>
+	<div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div>
+	<div id="contentBox">
+	 			<select name="selItens" ng-model="filterPaging" 
+					ng-options="pagin.val as pagin.label for pagin in pagingArr" >
+			  </select>
+			  <select name="selProds" ng-model="prodFilter" ng-change="loadData()"
+					ng-options="prod.value as prod.label for prod in prodArr" >
+			  </select>
+	
+	
+			 <p>Nome: <span ng-bind="convidado.name"></span>
+			 <br>Idade: <span ng-bind="convidado.age"></span>
+			 <br>Pais: <span ng-bind="convidado.country"></span>
+			 <br>Path: <span ng-bind="convidado.picturePath"></span></p>
+	</div>
 </div>
 
 <div id="maindFooter">
